@@ -1,4 +1,7 @@
 # Node
 node_modules/
+.yarn
+.pnp*
 package-lock.json
 yarn.lock
+config.js

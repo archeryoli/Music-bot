@@ -6,6 +6,11 @@ module.exports = (queue, track) => {
     .setAuthor({name: `Started playing ${track.title} in ${queue.channel.name} 🎧`, iconURL: track.thumbnail})
     .setColor('#2f3136')
 
+    const shuffle = new ButtonBuilder()
+    .setLabel('Shuffle')
+    .setCustomId(JSON.stringify({ffb: 'shuffle'}))
+    .setStyle('Primary')
+
     const back = new ButtonBuilder()
     .setLabel('Back')
     .setCustomId(JSON.stringify({ffb: 'back'}))
@@ -31,7 +36,18 @@ module.exports = (queue, track) => {
     .setCustomId(JSON.stringify({ffb: 'lyrics'}))
     .setStyle('Secondary')
 
-    const row1 = new ActionRowBuilder().addComponents(back, loop, resumepause, lyrics, skip)
-    queue.metadata.send({ embeds: [embed], components: [row1] })
+    const kick = new ButtonBuilder()
+         .setLabel('Kick Bot')
+         .setCustomId(JSON.stringify({ffb: 'stop'}))
+         .setStyle('Danger')
+
+    const queueButton = new ButtonBuilder()
+        .setLabel('Queue')
+        .setCustomId(JSON.stringify({ffb: 'queue'}))
+        .setStyle('Success')
+
+    const row1 = new ActionRowBuilder().addComponents(back, kick, resumepause, shuffle, skip)
+    const row2 = new ActionRowBuilder().addComponents(queueButton)
+    queue.metadata.send({ embeds: [embed], components: [row1, row2] })
 
 }

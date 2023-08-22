@@ -19,6 +19,7 @@
         "ms": "^3.0.0-canary.1",
         "opusscript": "^0.0.8",
         "play-dl": "^1.9.6",
+        "youtube-sr": "^4.3.4",
         "ytdl-core": "^4.11.4"
     }
 }
